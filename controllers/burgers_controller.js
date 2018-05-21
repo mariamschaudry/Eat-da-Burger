@@ -33,11 +33,18 @@ router.post("/burger/create", function(req, res) {
 });
 
 // Devour a burger //
-router.post("/burger/eat/:id", function(req, res) {    
-    burger.updateOne(req.params.id, function() {
-        res.redirect("/index"); 
-    }); 
+router.post("/burger/eat/:id", function(req, res) {  
+    burger.updateOne({
+        devoured: request.body.devoured
+    }, condition, function() {
+        result.redirect("/");
+    });
+        
+        
+        // req.params.id, function() {
+        // res.redirect("/index"); 
 }); 
+
 
 // ------------------------------------------------------- //
 
