@@ -14,7 +14,7 @@
 
         {{!-- Dynamically Insert Ready Burgers Here  --}}
         {{#each burgers}}
-            {{#unless this.devoured}}
+            {{#unless devoured}}
             <br>
             <div class = "burger">
                 <div class = "order">
@@ -22,10 +22,13 @@
                 </div>
             </div>
             <div>
-                <form action = "/{{this.id}}?_method=PUT" method = "POST">
-                <input type="hidden" name="devoured" value="true">
+                <form action = "burger/eat/{{id}}" method = "POST">
+                    <div class = "input-group">
+                {{!-- <input type="hidden" name="devoured" value="true"> --}}
+                    <class = "form-control">{{burger_name}}</class>
                 <button type="submit" class="devour">Devour it!</button>
-                {{!-- <a class="waves-effect waves-light btn" id = "button">Devour it!</a> --}}
+
+                    </div>
                 </form>
             </div>
             {{/unless}}
@@ -39,17 +42,17 @@
         {{!-- Dynamically Insert Ready Burgers Here  --}}
         {{#each burgers}}
                     {{#if this.devoured}}
-                        <div class="devouredBurgers">
+                        <div class="input-group">
                             <div class = "order">
                             {{this.burger_name}}
                             </div>
                         </div>
                         <div>
-                           <form action = "/{{this.id}}?_method=PUT" method = "POST">
-                           <input type="hidden" name="devoured" value="false">
-                            <button type="submit" class="order-again">Order it Again!</button>
+                           <class = "form-control">{{.this.burger_name}}</class>
+                           {{!-- <input type="hidden" name="devoured" value="false"> --}}
+                            {{!-- <button type="submit" class="order-again">Order it Again!</button> --}}
                              {{!-- <a class="waves-effect waves-light btn" id = "button">Order it Again!</a> --}}
-                           </form>
+                    
                         </div>
                     {{/if}}
                 {{/each}}

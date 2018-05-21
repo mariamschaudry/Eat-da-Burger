@@ -35,57 +35,37 @@ function objToSql(ob) {
 var orm = {
     
     // selectAll()
-    selectAll: function(tableInput, callback) {
-        var queryString = "SELECT * FROM " + tableInput + ";";
-        
-        // Run MySQL Query //
-        connection.query(queryString, function (err, result) {
-            if (err) throw err; 
+    selectAll: function(callback) {
+        connection.query("SELECT * FROM burgers", function (err, result){
+            if (err) {
+                throw err; 
+            }
+            callback(result);
+    });
+},
+
+    // insertOne()
+    insertOne: function(burger_name, callback) {
+        console.log(burger_name);
+        connection.query("INSERT INTO burgers SET ?", {
+            burger_name : burger_name,
+            devoured: false
+        }, function(err, result) {
+            if(err) throw (err);
             callback(result);
         });
     },
 
-    // insertOne()
-    insertOne: function(table, cols, vals, callback) {
-        console.log(table, cols, vals);
-        var queryString = "INSERT INTO " + table;
-
-        queryString += " (";
-        queryString += cols.toString();
-        queryString += ") ";
-        queryString += "VALUES (";
-        queryString += printQuestionMarks(vals.length);
-        queryString += ") ";
-
-        console.log(queryString);
-
-        connection.query(queryString, vals, function(err, result) {
-            if(err) {
-              throw err; 
-            }
-            callback(result); 
-    });
-},
-
    // updateOne()
-   updateOne: function(table, objColVals, condition, callback) {
-       var queryString = "UPDATE" + table; 
+   updateOne: function(burgerID, callback) {
+       connection.query("UPDATE burges SET ? WHERE ?", [{devoured: true}, {id: burgerID}], function(err, result){
+           if (err) throw err;
+           callback(result);
+       });
+    }
 
-       queryString += " SET ";
-       queryString += objToSql(objColVals);
-       queryString += " WHERE ";
-       queryString += condition;
-
-        console.log(queryString);
-        connection.query(queryString, function(err, result) {
-            if (err) {
-                throw err;
-            }
-            callback(result);
-    });
-  }
 };
-
+    
 // Export the orm object for the model burger.js //
 
 module.exports = orm;

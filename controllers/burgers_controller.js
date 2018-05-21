@@ -20,7 +20,7 @@ router.get("/", function(req, res) {
 router.get("/index", function (req, res) {
     burger.selectAll(function(data) {
         var hbsObject = { burgers: data };
-        // console.log(hbsObject); <-- This works! 
+        console.log(hbsObject); 
         res.render("index", hbsObject);
     });
 });
@@ -30,19 +30,16 @@ router.post("/burger/create", function(req, res) {
     burger.insertOne(req.body.burger_name, function() {
         res.redirect("/index");
     });
+
+    console.log("/burger/create");
 });
 
 // Devour a burger //
 router.post("/burger/eat/:id", function(req, res) {  
-    burger.updateOne({
-        devoured: request.body.devoured
-    }, condition, function() {
-        result.redirect("/");
+    burger.updateOne(req.params.id, function() {
+        res.redirect("/index");
+    
     });
-        
-        
-        // req.params.id, function() {
-        // res.redirect("/index"); 
 }); 
 
 
