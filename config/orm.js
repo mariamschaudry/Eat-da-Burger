@@ -52,26 +52,38 @@ var orm = {
 },
 
     // insertOne()
-    insertOne: function(table, cols, vals, cb) {
-        var queryString = "INSERT INTO " + table;
-        console.log("this is vals!" + vals);
 
-        queryString += " (";
-        queryString += cols.toString();
-        queryString += ") ";
-        queryString += "VALUES (";
-        queryString += printQuestionMarks(vals.length);
-        queryString += ") ";
-
-        console.log(queryString);
-
-        connection.query(queryString, vals, function(err, res) {
-            if (err) {
-                throw err;
-            }
-            cb(res);
+    insertOne: function(burger_name, cb){
+        connection.query("INSERT INTO burgers SET ?", {
+            burger_name: burger_name,
+            devoured: false
+        }, function(err, result){
+            if(err) throw err;
+            cb(result);
         });
     },
+
+    // insertOne: function(table, cols, vals, cb) {
+    //     var queryString = "INSERT INTO " + table;
+    //     console.log("this is vals!" + vals);
+
+    //     queryString += " (";
+    //     queryString += cols.toString();
+    //     queryString += ") ";
+    //     queryString += "VALUES (";
+    //     queryString += printQuestionMarks(vals.length);
+    //     queryString += ") ";
+
+    //     // console.log("This is the query string!" + queryString);
+    //     // console.log("This is printQuestionMarks" + printQuestionMarks());
+
+    //     connection.query(queryString, vals, function(err, res) {
+    //         if (err) {
+    //             throw err;
+    //         }
+    //         cb(res);
+    //     });
+    // },
 
    // updateOne()
    updateOne: function(table, objColVals, condition, cb) {
