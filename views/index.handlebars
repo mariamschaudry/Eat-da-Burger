@@ -41,7 +41,6 @@
             {{#if this.devoured}}
             <br>
             <div class = "order">
-                {{!-- {{this.id}} --}}
                 {{this.burger_name}}
             
                 <form action = "/{{this.id}}?_method=PUT" method ="POST">
@@ -57,7 +56,7 @@
 <div class = "row">
 
     <div class="col-md-6">
-    <form class="create-update-form" action="/" method="POST">
+    <form class="create-update-form" action="/create" method="POST">
         <div class="form-group"> 
             <center><p>Still Hungry?</p></center>
             <center><p>Type in the name of your favorite veggie burger and place your order!</p></center>

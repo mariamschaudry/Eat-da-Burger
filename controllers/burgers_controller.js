@@ -23,8 +23,12 @@ router.get("/", function (req, res) {
 });
 
 // Create a new burger //
-router.post("/", function(req, res) {
-    burger.insertOne(["burger_name", "devoured"], [req.body.burger_name, req.body.devoured], function() {
+router.post("/create", function(req, res) {
+    console.log(req.body)
+    let values = [req.body["burger_name"], req.body.devoured];
+    console.log(values);
+    burger.insertOne("burgers", ["burger_name","devoured"], values, function(result) {
+        console.log(result);
         res.redirect("/");
     });
 });
