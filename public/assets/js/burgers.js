@@ -1,6 +1,6 @@
 // Wait to attach handlers until the DOM fully loads
 $(function(){
-    $(".devour-burger").on("click", function(event){
+    $(".devour").on("click", function(event){
         var id = $(this).data("id");
 
         // Send PUT request

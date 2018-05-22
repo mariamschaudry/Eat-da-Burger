@@ -54,7 +54,7 @@ var orm = {
     // insertOne()
     insertOne: function(table, cols, vals, cb) {
         var queryString = "INSERT INTO " + table;
-        console.log(table, cols, vals);
+        console.log("this is vals!" + vals);
 
         queryString += " (";
         queryString += cols.toString();
@@ -72,15 +72,6 @@ var orm = {
             cb(res);
         });
     },
-
-    //     connection.query("INSERT INTO burgers SET ?", {
-    //         burger_name : burger_name,
-    //         devoured: false
-    //     }, function(err, result) {
-    //         if(err) throw (err);
-    //         callback(result);
-    //     });
-    // },
 
    // updateOne()
    updateOne: function(table, objColVals, condition, cb) {
@@ -101,11 +92,6 @@ var orm = {
     }
 };
 
-//        connection.query("UPDATE burges SET ? WHERE ?", [{devoured: true}, {id: burgerID}], function(err, result){
-//            if (err) throw err;
-//            callback(result);
-//        });
-//     }
 
 // };
     

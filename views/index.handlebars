@@ -39,14 +39,16 @@
         {{!-- Dynamically Insert Ready Burgers Here  --}}
         {{#each burgers}}
             {{#if this.devoured}}
-    
+            <br>
             <div class = "order">
-                {{this.id}}
+                {{!-- {{this.id}} --}}
                 {{this.burger_name}}
-            </div>
+            
                 <form action = "/{{this.id}}?_method=PUT" method ="POST">
                     <input type = "hidden" name = "devoured" value = "false">
+                    <button class="btn waves-effect waves-light" id ="button" type="submit" name="action">Order it Again!</button>
                 </form>
+            </div>
             {{/if}}
         {{/each}}
     </div>
@@ -58,7 +60,9 @@
         <div class="form-group">
         <input type="text" id="bu" name="name" placeholder="Your dream veggie burger" required/>
         </div>
+        <center>
         <button class="btn waves-effect waves-light" id = "button" type="submit" name="action">Place Order</button>
+        </center>
     </form>
 
     </div>
