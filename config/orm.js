@@ -18,10 +18,16 @@ function objToSql(ob) {
 
     // For loop to loop though keys and push the key/value as a string int arr //     
     for (var key in ob) {
+        var value = ob[key];
         // Returns a Boolean value indicating whether an object has a property with the specified name //
         // The hasOwnProperty method returns true if object has a property of the specified name, false if it does not //
         if (Object.hasOwnProperty.call(ob, key)) {
-            arr.push(key + "=" + ob[key]);
+
+            // If string with spaces, add quotations
+      if (typeof value === "string" && value.indexOf(" ") >= 0) {
+        value = "'" + value + "'";
+      }
+            arr.push(key + "=" + value);
         }
     }
     return arr.toString();
@@ -35,18 +41,18 @@ function objToSql(ob) {
 var orm = {
     
     // selectAll()
-    selectAll: function(tableInput, callback) {
+    selectAll: function(tableInput, cb) {
         var queryString = "SELECT * FROM " + tableInput + ";";
-        connection.query(queryString, function (err, result){
+        connection.query(queryString, function (err, res){
             if (err) {
                 throw err; 
             }
-            callback(result);
+            cb(res);
     });
 },
 
     // insertOne()
-    insertOne: function(table, cols, vals, callback) {
+    insertOne: function(table, cols, vals, cb) {
         var queryString = "INSERT INTO " + table;
         console.log(table, cols, vals);
 
@@ -59,11 +65,11 @@ var orm = {
 
         console.log(queryString);
 
-        connection.query(queryString, vals, function(err, result) {
+        connection.query(queryString, vals, function(err, res) {
             if (err) {
                 throw err;
             }
-            callback(result);
+            cb(res);
         });
     },
 
@@ -77,7 +83,7 @@ var orm = {
     // },
 
    // updateOne()
-   updateOne: function(burgerID, callback) {
+   updateOne: function(table, objColVals, condition, cb) {
         var queryString = "UPDATE " + table;
 
         queryString += " SET ";
@@ -86,14 +92,14 @@ var orm = {
         queryString += condition;
 
         console.log(queryString);
-        connection.query(queryString, function(err, result) {
+        connection.query(queryString, function(err, res) {
             if (err) {
                 throw err;
             }
-            callback(result);
+            cb(res);
         });
     }
-    };
+};
 
 //        connection.query("UPDATE burges SET ? WHERE ?", [{devoured: true}, {id: burgerID}], function(err, result){
 //            if (err) throw err;

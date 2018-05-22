@@ -14,7 +14,7 @@
 
         {{!-- Dynamically Insert Ready Burgers Here  --}}
         {{#each burgers}}
-            {{#unless devoured}}
+            {{#unless this.devoured}}
             <br>
             <div class = "burger">
                 <div class = "order">
@@ -22,14 +22,11 @@
                 </div>
             </div>
             <div>
-                <form action = "burger/eat/{{id}}" method = "POST">
-                    <div class = "input-group">
-                {{!-- <input type="hidden" name="devoured" value="true"> --}}
-                    <class = "form-control">{{burger_name}}</class>
-                <button type="submit" class="devour">Devour it!</button>
-
-                    </div>
-                </form>
+                <form action = "/{{this.id}}?_method=PUT" method = "POST">
+                    <input type="hidden" name="devoured" value="true">
+            
+                <button class="btn waves-effect waves-light" id ="button" type="submit" name="action">Devour it!</button>
+            </form>
             </div>
             {{/unless}}
         {{/each}}
@@ -41,40 +38,30 @@
 
         {{!-- Dynamically Insert Ready Burgers Here  --}}
         {{#each burgers}}
-                    {{#if this.devoured}}
-                        <div class="input-group">
-                            <div class = "order">
-                            {{this.burger_name}}
-                            </div>
-                        </div>
-                        <div>
-                           <class = "form-control">{{.this.burger_name}}</class>
-                           {{!-- <input type="hidden" name="devoured" value="false"> --}}
-                            {{!-- <button type="submit" class="order-again">Order it Again!</button> --}}
-                             {{!-- <a class="waves-effect waves-light btn" id = "button">Order it Again!</a> --}}
-                    
-                        </div>
-                    {{/if}}
-                {{/each}}
+            {{#if this.devoured}}
+    
+            <div class = "order">
+                {{this.id}}
+                {{this.burger_name}}
             </div>
+                <form action = "/{{this.id}}?_method=PUT" method ="POST">
+                    <input type = "hidden" name = "devoured" value = "false">
+                </form>
+            {{/if}}
+        {{/each}}
+    </div>
+</div>
+
+    <div class="main">
+
+    <form class="create-update-form" action="/" method="POST">
+        <div class="form-group">
+        <input type="text" id="bu" name="name" placeholder="Your dream veggie burger" required/>
         </div>
+        <button class="btn waves-effect waves-light" id = "button" type="submit" name="action">Place Order</button>
+    </form>
 
-        {{!-- <div class="main">
-
-        <form class="create-update-form" action="/" method="POST">
-            <div class="form-group">
-            <input type="text" id="ca" name="name" placeholder="Your dream veggie burger" required/>
-            </div>
-            <button type="submit" id="order">
-            Place Order
-            </button>
-        </form>
-
-        <p>Hungry? Type in the name of the veggie burger you want to eat, then place your order.</p>
-        
-        <div class="line"></div>
-
-        </div> --}}
+    </div>
 
 
 
