@@ -23,13 +23,14 @@ router.get("/", function (req, res) {
 });
 
 // Create a new burger //
-router.post("/create", function(req, res) {
+router.post("/api/create", function(req, res) {
     console.log(req.body)
-    let values = [req.body["burger_name"], req.body.devoured];
-    console.log(values);
-    burger.insertOne("burgers", ["burger_name","devoured"], values, function(result) {
-        console.log(result);
-        res.redirect("/");
+    let values = [req.body["burger_name"]];
+    console.log("API create - this are the values" + values);
+
+    burger.insertOne("burgers", values, function(results) {
+        console.log("this is the result" + results);
+        res.json(results);
     });
 });
 
@@ -39,6 +40,7 @@ router.put("/:id", function(req, res) {
     console.log("condition", condition);
 
     burger.updateOne({devoured : req.body.devoured}, condition, function() {
+        // res.json(results)
         res.redirect("/");
     
     });

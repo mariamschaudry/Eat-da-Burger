@@ -61,18 +61,22 @@ var orm = {
     //     });
     // },
 
-    insertOne: function(table, cols, vals, cb) {
+    insertOne: function(table, vals, cb) {
         var queryString = "INSERT INTO " + table;
+        console.log("this is the table" + table);
         console.log("this is vals!" + vals);
+        // console.log('this is col' + cols);
 
         queryString += " (";
-        queryString += cols.toString();
+        queryString += "burger_name";
+        // queryString += cols.toString();
         queryString += ") ";
-        queryString += "VALUES (";
-        queryString += printQuestionMarks(vals.length);
-        queryString += ") ";
+        queryString += "VALUE ('";
+        // queryString += printQuestionMarks(vals.length);
+        queryString += vals;
+        queryString += "') ";
 
-        // console.log("This is the query string!" + queryString);
+        console.log("This is the query string!" + queryString);
         // console.log("This is printQuestionMarks" + printQuestionMarks());
 
         connection.query(queryString, vals, function(err, res) {
