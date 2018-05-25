@@ -50,17 +50,6 @@ var orm = {
             cb(res);
     });
 },
-
-    // insertOne()
-
-    // insertOne: function(burger_name, devoured, cb){
-    //     connection.query("INSERT INTO burgers (burger_name, devoured\) VALUE (?, ?)", 
-    //     [burger_name,devoured], function(err, result){
-    //         if(err) throw err;
-    //         cb(result);
-    //     });
-    // },
-
     insertOne: function(table, vals, cb) {
         var queryString = "INSERT INTO " + table;
         console.log("this is the table" + table);
@@ -105,9 +94,6 @@ var orm = {
         });
     }
 };
-
-
-// };
     
 // Export the orm object for the model burger.js //
 

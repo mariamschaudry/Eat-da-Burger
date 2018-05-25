@@ -26,5 +26,8 @@
     "nodaemon": "0.0.4",
     "npm": "^6.0.1",
     "sequelize-heroku": "^1.0.0"
+  },
+  "engine": {
+    "node": "9.40"
   }
 }

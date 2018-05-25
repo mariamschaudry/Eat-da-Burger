@@ -5,8 +5,8 @@ CREATE DATABASE burger_db;
 USE burger_db;
 
 CREATE TABLE burgers(
-id INTEGER PRIMARY KEY AUTO_INCREMENT,
-burger_name VARCHAR (400),
-devoured BOOLEAN
+id INT NOT NULL AUTO_INCREMENT,
+burger_name VARCHAR(400),
+devoured BOOLEAN,
+PRIMARY KEY (id)
 );
-
