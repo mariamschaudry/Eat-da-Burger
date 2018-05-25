@@ -14,5 +14,4 @@ Using an home-grown ORM, the app has 3 basic CRUD functions...
     * hits a `/burger/create` route in Express to insert a new burger into the MySQL database
     * re-routes the webpage back to the index, where the burger is now ready to be eaten column (via Handlebars)
     
-    ![eatdaburger](https://user-images.githubusercontent.com/32858340/40524312-f3ef7f10-5fa7-11e8-9c31-30a8f2ffd9a4.png)
-
+  ![eatburger](https://user-images.githubusercontent.com/32858340/40524479-b7c388c8-5fa8-11e8-99ec-1ff166fdec2d.jpg)
