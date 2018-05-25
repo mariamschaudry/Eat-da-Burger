@@ -15,10 +15,14 @@
         <h4>Ready to Eat!</h4>
 
         {{!-- Dynamically Insert Ready Burgers Here --}} {{#each burgers}}
+        {{#unless this.devoured}}
         <br>
         <div class="burger">
             <div class="order">
-                {{#unless this.devoured}} {{burger_name}} {{/unless}}
+                 {{burger_name}} 
+                
+                
+                
             </div>
         </div>
         <div>
@@ -28,6 +32,8 @@
                 <button class="btn waves-effect waves-light" id="button" type="submit" name="action">Devour it!</button>
             </form>
         </div>
+                {{/unless}}
+        
         {{/each}}
     </div>
 
